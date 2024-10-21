@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { SafeAreaView, TextInput, Button, View, Text } from "react-native";
+import { SafeAreaView, TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 /* import { SendEmail, RegisterPet } from "../../api/setupAxios"; */
 import { useState } from "react";
 import { Formik } from "formik";
@@ -68,6 +68,23 @@ const FormPetOwner = ({ navigation }) => {
       [name]: "",
     }));
   };
+  const styles = StyleSheet.create({
+    input_muma: {
+      backgroundColor: "#f6f6f6",
+      borderWidth: 1,
+      borderColor: "#f6f6f6",
+      color: "#f08318",
+      padding: 3,
+    },
+    btn_muma: {
+      fontWeight: 500,
+      fontSize: 14,
+      lineHeight: 22,
+      backgroundColor: "#f08318",
+      borderWidth: 1,
+      borderBlockColor: "#f08318",
+    },
+  });
   return (
     <Formik initialValues={{ lastname: "", email: "", name: "", password: "", confirm_password: "" }} validate={(values) => valueManagement(values)} onSubmit={(values, { setSubmitting }) => submitForm(values, setSubmitting)}>
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
@@ -79,20 +96,20 @@ const FormPetOwner = ({ navigation }) => {
           <SafeAreaView ref={refForm} onSubmit={handleSubmit} className="d-flex flex-column gap-2">
             <View className="gap-2 justify-content-center">
               <View>
-                <TextInput className={`input-muma ${borderDanger.name}`} style={{ transition: "none" }} placeholder="Nombre*" type="text" name="name" onChangeText={handleInputChange} onBlur={handleBlur} value={values.name} />
+                <TextInput style={styles.input_muma} placeholder="Nombre*" type="text" name="name" onChangeText={handleInputChange} onBlur={handleBlur} value={values.name} />
                 <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.name && touched.name && errors.name}</Text>
               </View>
               <View>
-                <TextInput className={`input-muma ${borderDanger.lastname}`} placeholder="Apellido*" type="text" name="lastname" onChangeText={handleInputChange} onBlur={handleBlur} value={values.lastname} />
+                <TextInput style={styles.input_muma} placeholder="Apellido*" type="text" name="lastname" onChangeText={handleInputChange} onBlur={handleBlur} value={values.lastname} />
                 <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.lastname && touched.lastname && errors.lastname}</Text>
               </View>
               <View>
-                <TextInput className={`input-muma ${borderDanger.email}`} placeholder="Email*" type="text" name="email" onChangeText={handleInputChange} onBlur={handleBlur} value={values.email} />
+                <TextInput style={styles.input_muma} placeholder="Email*" type="text" name="email" onChangeText={handleInputChange} onBlur={handleBlur} value={values.email} />
                 <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.email && touched.email && errors.email}</Text>
               </View>
               <View>
                 {/*                 <InputGroup className={`${borderDanger.password} rounded`}> */}
-                <TextInput className="input-muma" placeholder="Contraseña*" type={!showPassword.password ? "password" : "text"} name="password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.password} />
+                <TextInput style={styles.input_muma} placeholder="Contraseña*" secureTextEntry={!showPassword.password ? "password" : "text"} name="password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.password} />
                 {/*               <InputGroup.Text className="pointer input-muma" onClick={togglePasswordVisibility} data-input="password">
                     <i className={`bi ${!showPassword.password ? "bi-eye-slash" : "bi-eye"} color-orange-muma`} data-input="password"></i>
                   </InputGroup.Text>
@@ -101,7 +118,7 @@ const FormPetOwner = ({ navigation }) => {
               </View>
               <View>
                 {/*                 <InputGroup className={`${borderDanger.confirm_password} rounded`}> */}
-                <TextInput className="input-muma" placeholder="Confirmar contraseña*" type={!showPassword.confirm_password ? "password" : "text"} name="confirm_password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.confirm_password} />
+                <TextInput style={styles.input_muma} placeholder="Confirmar contraseña*" secureTextEntry={!showPassword.confirm_password ? "password" : "text"} name="confirm_password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.confirm_password} />
                 {/*                   <InputGroup.Text className="pointer input-muma" onClick={togglePasswordVisibility} data-input="confirm_password">
                     <i className={`bi ${!showPassword.confirm_password ? "bi-eye-slash" : "bi-eye"} color-orange-muma`} data-input="confirm_password"></i>
                   </InputGroup.Text>
@@ -109,7 +126,21 @@ const FormPetOwner = ({ navigation }) => {
                 <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.confirm_password && touched.confirm_password && errors.confirm_password}</Text>
               </View>
             </View>
-            <Button title="Registrarme" className="background-button-muma w-100 mt-5" type="submit" disabled={isSubmitting} />
+            <TouchableOpacity
+              style={{
+                borderRadius: 20,
+                backgroundColor: "#f08318",
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingTop: 10,
+                paddingBottom: 10,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              disabled={isSubmitting}
+            >
+              <Text style={{ color: "white" }}>Registrarme</Text>
+            </TouchableOpacity>
           </SafeAreaView>
         );
       }}
