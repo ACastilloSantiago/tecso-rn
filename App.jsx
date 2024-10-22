@@ -4,6 +4,8 @@ import Login from "./src/pages/Login.jsx";
 import { store } from "./src/app/store.js";
 import React from "react";
 import { Provider } from "react-redux";
+import PetRegistration from "./src/pages/RegisterPetOwner.jsx";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +17,7 @@ const Routes = [
   },
   {
     name: "register_pet_owner",
-    component: Login,
+    component: PetRegistration,
     options: { title: "Registrar mascotero" },
   },
 ];
