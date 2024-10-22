@@ -35,7 +35,7 @@ export const Button = ({ children = "", onPress = () => {}, size = "small", vari
 
 // Define PropTypes
 Button.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   onPress: PropTypes.func.isRequired,
   size: PropTypes.oneOf(["small", "large"]),
   variant: PropTypes.oneOf(["default", "lineal"]),

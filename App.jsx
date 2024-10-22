@@ -1,7 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./src/pages/Login.jsx";
+import { store } from "./src/app/store.js";
+import React from "react";
+import { Provider } from "react-redux";
 import PetRegistration from "./src/pages/RegisterPetOwner.jsx";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -20,12 +24,14 @@ const Routes = [
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {Routes.map((route, key) => (
-          <Stack.Screen name={route.name} component={route.component} options={route.options} key={key} />
-        ))}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}> 
+      <NavigationContainer>
+        <Stack.Navigator>
+          {Routes.map((route, key) => (
+            <Stack.Screen name={route.name} component={route.component} options={route.options} key={key} />
+          ))}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
