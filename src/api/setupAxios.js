@@ -1,27 +1,24 @@
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage'; // AsyncStorage en lugar de localStorage
-import { EXPO_API_URL_GENERAL, EXPO_API_SERVICE_ID, EXPO_API_TEMPLATE_ID, EXPO_API_PUBLIC_KEY, EXPO_API_URL_CLOUDINARY, EXPO_API_UPLOAD_PRESET } from '@env';
-
-
+import AsyncStorage from "@react-native-async-storage/async-storage"; // AsyncStorage en lugar de localStorage
+import { EXPO_API_URL_GENERAL, EXPO_API_SERVICE_ID, EXPO_API_TEMPLATE_ID, EXPO_API_PUBLIC_KEY, EXPO_API_URL_CLOUDINARY, EXPO_API_UPLOAD_PRESET } from "@env";
 
 const instance = axios.create({
-  baseURL: EXPO_API_URL_GENERAL, 
+  baseURL: EXPO_API_URL_GENERAL,
   timeout: 3000,
   headers: { "Content-Type": "application/json" },
 });
 
 const instanceCloudinary = axios.create({
-  baseURL: EXPO_API_URL_CLOUDINARY, 
+  baseURL: EXPO_API_URL_CLOUDINARY,
   timeout: 3000,
   headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
-
-const returnConfigToken = async () => ({ 
-  headers: { 
-    Authorization: `bearer ${await AsyncStorage.getItem("token")}`, 
-    "Content-Type": "application/json" 
-  } 
+const returnConfigToken = async () => ({
+  headers: {
+    Authorization: `bearer ${await AsyncStorage.getItem("token")}`,
+    "Content-Type": "application/json",
+  },
 });
 
 export const GetGeneral = async (path) => {
@@ -64,7 +61,7 @@ export const login = async (values) => {
     if (response.data && response.data.token) {
       const token = response.data.token;
       const user = response.data.usuario;
-      await AsyncStorage.setItem("token", token); 
+      await AsyncStorage.setItem("token", token);
       return { token, user };
     } else {
       throw new Error("No se recibio el token");
@@ -174,18 +171,19 @@ export const RegisterPet = async (path, body) => {
     const response = await instance.post(path, body);
     return response.data;
   } catch (error) {
+    console.log("ERRORSITO", JSON.stringify(error));
     throw error.response.data.errors;
   }
 };
 
-/* export const SendEmail = async (form) => {
+export const SendEmail = async (form) => {
   try {
     let response = await emailjs.sendForm(EXPO_API_SERVICE_ID, EXPO_API_TEMPLATE_ID, form, EXPO_API_PUBLIC_KEY); // Cambiado a EXPO_ variables
     return response;
   } catch (error) {
     throw error;
   }
-}; */
+};
 
 export const createImageCloudinary = async (image) => {
   try {

@@ -1,145 +1,223 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView, TextInput, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-/* import { SendEmail, RegisterPet } from "../../api/setupAxios"; */
-import { useState } from "react";
 import { Formik } from "formik";
+import { RegisterPet, SendEmail } from "../../api/setupAxios";
+import Icon from "react-native-vector-icons/Ionicons";
+
 const FormPetOwner = ({ navigation }) => {
   const refForm = useRef(null);
-  const [showPassword, setshowPassword] = useState({ password: false, confirm_password: false });
-  const [borderDanger, setborderDanger] = useState({ name: "", lastname: "", email: "", password: "", confirm_password: "" });
+  const [showPassword, setShowPassword] = useState({ password: false, confirm_password: false });
+  const [borderDanger, setBorderDanger] = useState({ name: {}, lastname: {}, email: {}, password: {}, confirm_password: {} });
+
   const valueManagement = (values) => {
     const errors = {};
-    let classDanger = "border border-danger text-danger placeholder-danger";
+    let classDanger = { borderWidth: 1, borderColor: "red", color: "red" };
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     if (!values.name) {
       errors.name = "Campo requerido";
-      setborderDanger({ ...borderDanger, name: classDanger });
+      setBorderDanger({ ...borderDanger, name: classDanger });
     } else if (!values.lastname) {
       errors.lastname = "Campo requerido";
-      setborderDanger({ ...borderDanger, lastname: classDanger });
+      setBorderDanger({ ...borderDanger, lastname: classDanger });
     } else if (!values.email) {
       errors.email = "Campo requerido";
-      setborderDanger({ ...borderDanger, email: classDanger });
+      setBorderDanger({ ...borderDanger, email: classDanger });
     } else if (!emailRegex.test(values.email)) {
       errors.email = "Ingresá un correo válido";
-      setborderDanger({ ...borderDanger, email: classDanger });
+      setBorderDanger({ ...borderDanger, email: classDanger });
     } else if (!values.password) {
       errors.password = "Campo requerido";
-      setborderDanger({ ...borderDanger, password: classDanger });
+      setBorderDanger({ ...borderDanger, password: classDanger });
     } else if (!passwordRegex.test(values.password)) {
-      errors.password = "La contraseña debe contener una longitud de 8 caracteres, una letra minúscula, mayuscula, un número, un caracter especial.";
-      setborderDanger({ ...borderDanger, password: classDanger });
+      errors.password = "La contraseña debe contener una longitud de 8 caracteres, una letra minúscula, mayúscula, un número y un carácter especial.";
+      setBorderDanger({ ...borderDanger, password: classDanger });
     } else if (!values.confirm_password) {
       errors.confirm_password = "Campo requerido";
-      setborderDanger({ ...borderDanger, confirm_password: classDanger });
-    } else if (values.password.length && values.confirm_password.length && values.password !== values.confirm_password) {
+      setBorderDanger({ ...borderDanger, confirm_password: classDanger });
+    } else if (values.password !== values.confirm_password) {
       errors.confirm_password = "Las contraseñas no coinciden";
-      errors.password = "Las contraseñas no coinciden";
-      setborderDanger({ ...borderDanger, password: classDanger });
-      setborderDanger({ ...borderDanger, confirm_password: classDanger });
+      setBorderDanger({ ...borderDanger, confirm_password: classDanger });
     }
     return errors;
   };
+
   const submitForm = async (values, setSubmitting) => {
     setSubmitting(true);
     try {
-      let sendBody = { nombre: values.name, apellido: values.lastname, email: values.email, password: values.password };
-      /*       await RegisterPet("Mascoteros/registro", sendBody);
-      await SendEmail(refForm.current); */
+      let sendBody = {
+        nombre: values.name,
+        apellido: values.lastname,
+        email: values.email,
+        password: values.password,
+      };
+      console.log("BODY", sendBody);
+      await RegisterPet("Mascoteros/registro", sendBody);
+      console.log("PASE");
+      await SendEmail(refForm.current);
+      console.log("PASE1");
+
       navigation.navigate("validation_email");
       setSubmitting(false);
     } catch (error) {
-      if (error.includes("Ya existe un usuario registrado con esa dirección de email")) navigation.navigate("email_registered");
+      console.log("ERROR", error);
+      if (error?.includes("Ya existe un usuario registrado con esa dirección de email")) {
+        navigation.navigate("email_registered");
+      }
       setSubmitting(false);
       throw new Error(error);
     }
   };
-  const togglePasswordVisibility = (e) => {
-    const inputName = e.target.getAttribute("data-input");
-    setshowPassword({
+
+  const togglePasswordVisibility = (inputName) => {
+    setShowPassword({
       ...showPassword,
       [inputName]: !showPassword[inputName],
     });
   };
+
   const removeDangerClass = (name) => {
-    setborderDanger((prevState) => ({
+    setBorderDanger((prevState) => ({
       ...prevState,
       [name]: "",
     }));
   };
+
   const styles = StyleSheet.create({
+    passwordContainer: {
+      position: "relative",
+    },
     input_muma: {
       backgroundColor: "#f6f6f6",
       borderWidth: 1,
       borderColor: "#f6f6f6",
       color: "#f08318",
-      padding: 3,
+      padding: 10,
+      marginVertical: 5,
+      borderRadius: 5,
+    },
+    text_danger: {
+      color: "red",
+      fontSize: 12,
+      marginLeft: 10,
     },
     btn_muma: {
-      fontWeight: 500,
-      fontSize: 14,
-      lineHeight: 22,
       backgroundColor: "#f08318",
+      padding: 10,
+      borderRadius: 20,
+      alignItems: "center",
+      marginTop: 10,
+    },
+    btn_text: {
+      color: "white",
+      fontWeight: "bold",
+      fontSize: 14,
+    },
+    passwordContainer: {
+      position: "relative",
+    },
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      padding: 16,
+    },
+    logoContainer: {
+      alignItems: "center",
+      marginBottom: 50,
+    },
+    logo: {
+      width: 100,
+      height: 100,
+    },
+    formGroup: {
+      marginBottom: 0,
+    },
+    input: {
       borderWidth: 1,
-      borderBlockColor: "#f08318",
+      borderColor: "#ccc",
+      padding: 10,
+      borderRadius: 5,
+    },
+    passwordContainer: {
+      position: "relative",
+    },
+    toggle: {
+      position: "absolute",
+      right: 10,
+      bottom: 10,
+    },
+    errorText: {
+      color: "red",
+      marginTop: 5,
+    },
+    errorInput: {
+      borderColor: "red",
+    },
+    rememberMeContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 20,
+    },
+    forgotPassword: {
+      color: "blue",
+      textDecorationLine: "underline",
+    },
+    showPass: {
+      fontSize: 30,
+      position: "absolute",
+      top: 10,
+      right: 10,
+    },
+    buttons: {
+      alignItems: "center",
+      gap: 10,
     },
   });
+
   return (
-    <Formik initialValues={{ lastname: "", email: "", name: "", password: "", confirm_password: "" }} validate={(values) => valueManagement(values)} onSubmit={(values, { setSubmitting }) => submitForm(values, setSubmitting)}>
+    <Formik initialValues={{ lastname: "", email: "", name: "", password: "", confirm_password: "" }} validate={valueManagement} onSubmit={(values, { setSubmitting }) => submitForm(values, setSubmitting)}>
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
-        const handleInputChange = (e) => {
-          handleChange(e);
-          removeDangerClass(e.target.name);
+        const handleInputChange = (name, value) => {
+          handleChange(name)(value);
+          removeDangerClass(name);
         };
+
         return (
-          <SafeAreaView ref={refForm} onSubmit={handleSubmit} className="d-flex flex-column gap-2">
-            <View className="gap-2 justify-content-center">
-              <View>
-                <TextInput style={styles.input_muma} placeholder="Nombre*" type="text" name="name" onChangeText={handleInputChange} onBlur={handleBlur} value={values.name} />
-                <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.name && touched.name && errors.name}</Text>
-              </View>
-              <View>
-                <TextInput style={styles.input_muma} placeholder="Apellido*" type="text" name="lastname" onChangeText={handleInputChange} onBlur={handleBlur} value={values.lastname} />
-                <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.lastname && touched.lastname && errors.lastname}</Text>
-              </View>
-              <View>
-                <TextInput style={styles.input_muma} placeholder="Email*" type="text" name="email" onChangeText={handleInputChange} onBlur={handleBlur} value={values.email} />
-                <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.email && touched.email && errors.email}</Text>
-              </View>
-              <View>
-                {/*                 <InputGroup className={`${borderDanger.password} rounded`}> */}
-                <TextInput style={styles.input_muma} placeholder="Contraseña*" secureTextEntry={!showPassword.password ? "password" : "text"} name="password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.password} />
-                {/*               <InputGroup.Text className="pointer input-muma" onClick={togglePasswordVisibility} data-input="password">
-                    <i className={`bi ${!showPassword.password ? "bi-eye-slash" : "bi-eye"} color-orange-muma`} data-input="password"></i>
-                  </InputGroup.Text>
-                </InputGroup> */}
-                <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.password && touched.password && errors.password}</Text>
-              </View>
-              <View>
-                {/*                 <InputGroup className={`${borderDanger.confirm_password} rounded`}> */}
-                <TextInput style={styles.input_muma} placeholder="Confirmar contraseña*" secureTextEntry={!showPassword.confirm_password ? "password" : "text"} name="confirm_password" onChangeText={handleInputChange} onBlur={handleBlur} value={values.confirm_password} />
-                {/*                   <InputGroup.Text className="pointer input-muma" onClick={togglePasswordVisibility} data-input="confirm_password">
-                    <i className={`bi ${!showPassword.confirm_password ? "bi-eye-slash" : "bi-eye"} color-orange-muma`} data-input="confirm_password"></i>
-                  </InputGroup.Text>
-                </InputGroup> */}
-                <Text className="text-danger m-0 p-0 fs-12 ms-2">{errors.confirm_password && touched.confirm_password && errors.confirm_password}</Text>
-              </View>
+          <SafeAreaView ref={refForm}>
+            <View>
+              <TextInput style={{ ...styles.input_muma, ...borderDanger.name }} placeholder="Nombre*" onChangeText={(value) => handleInputChange("name", value)} onBlur={handleBlur("name")} value={values.name} />
+              {errors.name && touched.name && <Text style={styles.text_danger}>{errors.name}</Text>}
             </View>
-            <TouchableOpacity
-              style={{
-                borderRadius: 20,
-                backgroundColor: "#f08318",
-                paddingLeft: 10,
-                paddingRight: 10,
-                paddingTop: 10,
-                paddingBottom: 10,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              disabled={isSubmitting}
-            >
-              <Text style={{ color: "white" }}>Registrarme</Text>
+            <View>
+              <TextInput style={{ ...styles.input_muma, ...borderDanger.lastname }} placeholder="Apellido*" onChangeText={(value) => handleInputChange("lastname", value)} onBlur={handleBlur("lastname")} value={values.lastname} />
+              {errors.lastname && touched.lastname && <Text style={styles.text_danger}>{errors.lastname}</Text>}
+            </View>
+            <View>
+              <TextInput style={{ ...styles.input_muma, ...borderDanger.email }} placeholder="Email*" onChangeText={(value) => handleInputChange("email", value)} onBlur={handleBlur("email")} value={values.email} />
+              {errors.email && touched.email && <Text style={styles.text_danger}>{errors.email}</Text>}
+            </View>
+            <View style={styles.formGroup}>
+              <View style={styles.passwordContainer}>
+                <TextInput style={{ ...styles.input_muma, ...borderDanger.password }} placeholder="Contraseña*" secureTextEntry={!showPassword.password} onChangeText={(value) => handleInputChange("password", value)} onBlur={handleBlur("password")} value={values.password} />
+                <TouchableOpacity style={styles.toggle} onPress={() => togglePasswordVisibility("password")}>
+                  <Icon name={showPassword.password ? "eye-off" : "eye"} size={30} color="#000" />
+                </TouchableOpacity>
+              </View>
+              {errors.password && touched.password && <Text style={styles.text_danger}>{errors.password}</Text>}
+            </View>
+            <View style={styles.formGroup}>
+              <View style={styles.passwordContainer}>
+                <TextInput style={{ ...styles.input_muma, ...borderDanger.confirm_password }} placeholder="Confirmar Contraseña*" secureTextEntry={!showPassword.confirm_password} onChangeText={(value) => handleInputChange("confirm_password", value)} onBlur={handleBlur("confirm_password")} value={values.confirm_password} />
+                <TouchableOpacity style={styles.toggle} onPress={() => togglePasswordVisibility("confirm_password")}>
+                  <Icon name={showPassword.confirm_password ? "eye-off" : "eye"} size={30} color="#000" />
+                </TouchableOpacity>
+              </View>
+              {errors.confirm_password && touched.confirm_password && <Text style={styles.text_danger}>{errors.confirm_password}</Text>}
+            </View>
+            <TouchableOpacity style={styles.btn_muma} onPress={handleSubmit} disabled={isSubmitting}>
+              <Text style={styles.btn_text}>Registrarse</Text>
             </TouchableOpacity>
           </SafeAreaView>
         );
