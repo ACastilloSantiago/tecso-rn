@@ -6,6 +6,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import PetRegistration from "./src/pages/RegisterPetOwner.jsx";
 import UserSelect from "./src/pages/UserSelect.jsx";
+import HomeMascotero from "./src/pages/HomePetOwner.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ const Routes = [
     name: "UserSelect",
     component: UserSelect,
     options: { title: "Seleccionar tipo de usuario" },
+  },
+  {
+    name: "home_pet_owner",
+    component: HomeMascotero,
+    options: { title: "Home protectora" },
   },
 ];
 

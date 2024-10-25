@@ -23,9 +23,9 @@ const Login = ({ navigation }) => {
       const tipoRegistro = Number(user.idTipoRegistro);
       // Redireccionar según el tipo de usuario
       if (tipoRegistro === 2) {
-        navigation.navigate('register_pet_owner'); // Ruta para usuarios de tipo 2
+        navigation.navigate('home_pet_owner'); // Ruta para usuarios de tipo 2
       } else if (tipoRegistro === 1) {
-        navigation.navigate('register_pet_owner'); // Ruta para usuarios de tipo 1
+        navigation.navigate('home_pet_owner'); // Ruta para usuarios de tipo 1
       } else {
         navigation.navigate('/'); // Ruta por defecto si no hay coincidencias
       }
