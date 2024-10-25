@@ -5,7 +5,7 @@ const HomeMascotero = () => {
     
     return (
         <text>
-            Home mascotero
+            Home protectora
         </text>
     )
 }
