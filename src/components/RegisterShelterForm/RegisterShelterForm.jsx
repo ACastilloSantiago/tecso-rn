@@ -8,19 +8,19 @@ import { registerNewShelter } from "../../api/setupAxios";
 export const RegisterShelterForm = ({ navigation }) => {
   const { provinces, cities, setSelectedProvinces } = useFetchAddress();
 
-  const provinceOptions =
-    provinces &&
-    provinces.map(({ id, nombre }) => ({
-      value: JSON.stringify({ id, nombre }),
-      label: nombre,
-    }));
+  const provinceOptions = !!provinces
+    ? provinces.map(({ id, nombre }) => ({
+        value: JSON.stringify({ id, nombre }),
+        label: nombre,
+      }))
+    : [];
 
-  const cityOptions =
-    cities &&
-    cities.map(({ id, nombre, idProvincia }) => ({
-      value: JSON.stringify({ id, nombre, idProvincia }),
-      label: nombre,
-    }));
+  const cityOptions = !!cities.length
+    ? cities.map(({ id, nombre, idProvincia }) => ({
+        value: JSON.stringify({ id, nombre, idProvincia }),
+        label: nombre,
+      }))
+    : [];
 
   return (
     <Formik
@@ -49,6 +49,7 @@ export const RegisterShelterForm = ({ navigation }) => {
                 name="idProvincia"
                 placeholder="Provincia*"
                 options={provinceOptions}
+                noOption={"No hay provincias disponibles"}
                 customOnChange={(selectedOption) => {
                   if (selectedOption) {
                     const selectedProvince = JSON.parse(selectedOption);
@@ -65,6 +66,7 @@ export const RegisterShelterForm = ({ navigation }) => {
                 name="idCiudad"
                 placeholder="Ciudad*"
                 options={cityOptions}
+                noOption={"Seleccione una ciudad"}
                 customOnChange={(selectedOption) => {
                   if (selectedOption) {
                     setFieldValue("idCiudad", selectedOption);

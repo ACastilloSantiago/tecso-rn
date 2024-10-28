@@ -22,7 +22,7 @@ export const Select = ({ options, customOnChange = () => {}, placeholder, noOpti
 
   return (
     <View style={styles.container}>
-      <DropDownPicker value={field.value} onSelectItem={handleChange} closeOnBackPressed={true} textStyle={{ fontSize: 16 }} open={open} items={options} setOpen={setOpen} placeholder={placeholder || noOption} style={[styles.select, meta.touched && !!meta.error && styles.errorSelect]} placeholderStyle={[styles.placeholder, meta.touched && !!meta.error && { color: colors.systemError }]} selectedItemLabelStyle={styles.selectedItemLabel} labelStyle={styles.label} dropDownContainerStyle={styles.dropdownList} ArrowDownIconComponent={() => <Arrow variant="up" error={meta.touched && !!meta.error} />} ArrowUpIconComponent={() => <Arrow variant="down" error={meta.touched && !!meta.error} />} />
+      <DropDownPicker ListEmptyComponent={() => <Text style={{ textAlign: "center", padding: 8 }}>{noOption}</Text>} value={field.value} onSelectItem={handleChange} closeOnBackPressed={true} textStyle={{ fontSize: 16 }} open={open} items={options} setOpen={setOpen} placeholder={placeholder || noOption} style={[styles.select, meta.touched && !!meta.error && styles.errorSelect]} placeholderStyle={[styles.placeholder, meta.touched && !!meta.error && { color: colors.systemError }]} selectedItemLabelStyle={styles.selectedItemLabel} labelStyle={styles.label} dropDownContainerStyle={styles.dropdownList} ArrowDownIconComponent={() => <Arrow variant="up" error={meta.touched && !!meta.error} />} ArrowUpIconComponent={() => <Arrow variant="down" error={meta.touched && !!meta.error} />} />
       <ErrorMessage name={props.name} component={Text} style={styles.errorMessage} />
     </View>
   );
