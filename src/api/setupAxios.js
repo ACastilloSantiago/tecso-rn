@@ -79,13 +79,13 @@ export const registerNewShelter = async (values) => {
     ...rest,
     password,
     direccion: {
-      idCiudad: JSON.parse(idCiudad.value).id,
+      idCiudad: JSON.parse(idCiudad).id,
       calle: calle,
       numero: numero,
       piso: piso,
       departamento: departamento,
-      provincia: JSON.parse(idProvincia.value),
-      ciudad: JSON.parse(idCiudad.value),
+      provincia: JSON.parse(idProvincia),
+      ciudad: JSON.parse(idCiudad),
     },
   };
 
@@ -153,7 +153,7 @@ export const getProvinces = async () => {
     const response = await instance.get("Combos/Provincias");
     return response.data;
   } catch (error) {
-    console.error("Error al pedir provincias:", error);
+    console.error("Error al pedir provincias:", JSON.stringify(error));
   }
 };
 

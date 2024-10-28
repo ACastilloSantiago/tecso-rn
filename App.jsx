@@ -8,6 +8,7 @@ import PetRegistration from "./src/pages/RegisterPetOwner.jsx";
 import UserSelect from "./src/pages/UserSelect.jsx";
 import HomeMascotero from "./src/pages/HomePetOwner.jsx";
 import HomeShelter from "./src/pages/HomeShelter.jsx";
+import { RegisterShelter } from "./src/pages/RegisterShelter.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,11 @@ const Routes = [
     name: "register_pet_owner",
     component: PetRegistration,
     options: { title: "Registrar mascotero" },
+  },
+  {
+    name: "register_shelter",
+    component: RegisterShelter,
+    options: { title: "Registrar protectora" },
   },
   {
     name: "UserSelect",

@@ -13,6 +13,8 @@ export const Button = ({ children = "", onPress = () => {}, size = "small", vari
     buttonStyles.push(styles.large);
   } else if (size === "small") {
     buttonStyles.push(styles.small);
+  } else if (size === "max") {
+    buttonStyles.push(styles.max);
   }
 
   // Definir variante
@@ -37,7 +39,7 @@ export const Button = ({ children = "", onPress = () => {}, size = "small", vari
 Button.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   onPress: PropTypes.func.isRequired,
-  size: PropTypes.oneOf(["small", "large"]),
+  size: PropTypes.oneOf(["small", "large", "max"]),
   variant: PropTypes.oneOf(["default", "lineal"]),
 };
 
@@ -46,14 +48,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
+    height: 50,
+  },
+  max: {
+    alignSelf: "stretch",
   },
   large: {
     width: 328,
-    height: 50,
   },
   small: {
     width: 198,
-    height: 50,
   },
   lineal: {
     backgroundColor: "transparent",
