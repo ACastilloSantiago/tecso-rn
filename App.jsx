@@ -1,59 +1,94 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./src/pages/Login.jsx";
-import { store } from "./src/app/store.js";
 import React from "react";
 import { Provider } from "react-redux";
+import { NavigationContainer, DrawerActions } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { store } from "./src/app/store.js";
+import Login from "./src/pages/Login.jsx";
 import PetRegistration from "./src/pages/RegisterPetOwner.jsx";
 import UserSelect from "./src/pages/UserSelect.jsx";
 import HomeMascotero from "./src/pages/HomePetOwner.jsx";
 import HomeShelter from "./src/pages/HomeShelter.jsx";
 import { RegisterShelter } from "./src/pages/RegisterShelter.jsx";
+import ForgetPassword from "./src/pages/ForgetPassword.jsx";
+import Header from "./src/components/header/Header.jsx"; 
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-const Routes = [
-  {
-    name: "/",
-    component: Login,
-    options: { title: "Bienvenido" },
-  },
-  {
-    name: "register_pet_owner",
-    component: PetRegistration,
-    options: { title: "Registrar mascotero" },
-  },
-  {
-    name: "register_shelter",
-    component: RegisterShelter,
-    options: { title: "Registrar protectora" },
-  },
-  {
-    name: "UserSelect",
-    component: UserSelect,
-    options: { title: "Seleccionar tipo de usuario" },
-  },
-  {
-    name: "home_pet_owner",
-    component: HomeMascotero,
-    options: { title: "Home mascoter" },
-  },
-  {
-    name: "home_Shelter",
-    component: HomeShelter,
-    options: { title: "Home mascotero" },
-  },
-];
+function HomePetOwnerStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="home_pet_owner"
+        component={HomeMascotero}
+        options={{ headerShown: false }}
+      />
+      {/* Agrega más pantallas si es necesario */}
+    </Stack.Navigator>
+  );
+}
+
+function HomeShelterStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="home_Shelter"
+        component={HomeShelter}
+        options={{ headerShown: false }}
+      />
+      {/* Agrega más pantallas si es necesario */}
+    </Stack.Navigator>
+  );
+}
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator initialRouteName="Login">
+      <Drawer.Screen
+        name="/"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="user_select"
+        component={UserSelect}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="register_petOwner"
+        component={PetRegistration}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="register_shelter"
+        component={RegisterShelter}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="forget_password"
+        component={ForgetPassword}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="HomePetOwner"
+        component={HomePetOwnerStack}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="HomeShelter"
+        component={HomeShelterStack}
+        options={{ headerShown: false }}
+      />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          {Routes.map((route, key) => (
-            <Stack.Screen name={route.name} component={route.component} options={route.options} key={key} />
-          ))}
-        </Stack.Navigator>
+        <DrawerNavigator />
       </NavigationContainer>
     </Provider>
   );

@@ -8,7 +8,7 @@ import { login } from "../features/auth/authSlice.js";
 import { Image } from "react-native";
 import { Button as CustomButton } from "../components/Button.jsx";
 import logo from "../../assets/images/logo.png";
-import { TextInput, Card } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = ({ navigation }) => {
@@ -23,9 +23,9 @@ const Login = ({ navigation }) => {
       const tipoRegistro = Number(user.idTipoRegistro);
       // Redireccionar según el tipo de usuario
       if (tipoRegistro === 2) {
-        navigation.navigate('home_pet_owner'); // Ruta para usuarios de tipo 2
+        navigation.navigate('HomePetOwner', { screen: 'home_pet_owner' }); // Ruta para usuarios de tipo 2
       } else if (tipoRegistro === 1) {
-        navigation.navigate('home_Shelter'); // Ruta para usuarios de tipo 1
+        navigation.navigate('HomeShelter', { screen: 'home_Shelter' }); // Ruta para usuarios de tipo 1
       } else {
         navigation.navigate('/'); // Ruta por defecto si no hay coincidencias
       }
@@ -50,14 +50,19 @@ const Login = ({ navigation }) => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          dispatch(login(values));
-          if (rememberMe) {
-            AsyncStorage.setItem("savedEmail", values.email);
-          } else {
-            AsyncStorage.removeItem("savedEmail");
-          }
+        onSubmit=/* {home} */{(values, { setSubmitting }) => {
+          try{
+            dispatch(login(values));
+            if (rememberMe) {
+               AsyncStorage.setItem("savedEmail", values.email);
+            } else {
+               AsyncStorage.removeItem("savedEmail");
+            }
+          } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+          } finally {  
           setSubmitting(false);
+          }
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
