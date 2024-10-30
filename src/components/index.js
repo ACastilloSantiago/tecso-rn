@@ -1,5 +1,5 @@
-export { Select } from "./elements/Select";
+export * from "./Detail";
+export * from "./elements";
+export * from "./RegisterShelterForm";
 
 export { Button } from "./Button";
-
-export { Input } from "./elements/Input";
