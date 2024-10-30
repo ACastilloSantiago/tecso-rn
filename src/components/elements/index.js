@@ -1,5 +1,11 @@
 export { HeaderButton } from "./HeaderButton";
-
+export { Arrow } from "./Arrow";
+export { EyeIcon } from "./EyeIcon";
+export { Input } from "./Input";
+export { MapPin } from "./MapPin";
+export { Pill } from "./Pill";
+export { Select } from "./Select";
+export { Tag } from "./Tag";
 export { XCircle } from "./XCircle";
 export { Phone } from "./Phone";
 export { Mail } from "./Mail";

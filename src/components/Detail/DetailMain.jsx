@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import { Tag, MapPin, Pill, ShelterDetail, Button } from ".."; // Asegúrate de que estos componentes estén adaptados a React Native.
+import { View, Text, StyleSheet } from "react-native";
+import { Tag, MapPin, Pill, ShelterDetail, Button } from "..";
 import { colors } from "../../../assets/styles/styles";
 
 export const DetailMain = ({ nombre, estado, descripcion, ciudad, contacto, edad, raza, sexo, tamano }) => {

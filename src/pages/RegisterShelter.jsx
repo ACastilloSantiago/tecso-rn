@@ -1,5 +1,5 @@
 import { Image, View } from "react-native";
-import { RegisterShelterForm } from "../components/RegisterShelterForm";
+import { RegisterShelterForm } from "../components/";
 import { colors } from "../../assets/styles/styles";
 
 export const RegisterShelter = ({ navigation }) => {
