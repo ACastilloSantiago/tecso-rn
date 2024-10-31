@@ -1,19 +1,19 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useFetchPetById } from "../hooks/useFetchPetById";
+import { useFetchPetByIdForShelter } from "../hooks/";
 
 import { DetailMain, DetailSlider, HeaderButton } from "../components/";
 
 import arrow from "../../assets/images/arrow-left.jpg";
 import edit from "../../assets/images/edit.jpg";
 
-export const PetDetailForPetOwner = ({ route }) => {
+export const PetDetailForShelter = ({ route }) => {
   // * Uso de paramas
   const { id } = route.params;
 
-  const { pet } = useFetchPetById(id);
+  const { pet } = useFetchPetByIdForShelter(id);
   // *
 
-  // const { pet } = useFetchPetById(5);
+  // const { pet } = useFetchPetByIdForShelter(5);
 
   return (
     <View style={styles.container}>

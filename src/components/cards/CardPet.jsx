@@ -9,7 +9,7 @@ const CardPet = ({ image }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const wishList = useSelector((state) => state.wishlist);
-  const isInWishlist = wishList.includes(image.id);
+  const isInWishlist = wishList?.includes(image.id);
 
   const handleWishlistClick = () => {
     if (isInWishlist) {
@@ -23,11 +23,9 @@ const CardPet = ({ image }) => {
     <View style={styles.cardContainer}>
       <View style={styles.card}>
         <TouchableOpacity onPress={handleWishlistClick} style={styles.wishlistIcon}>
-          <Text style={[styles.heartIcon, { color: isInWishlist ? "red" : "gray" }]}>
-            {isInWishlist ? "❤️" : "🤍"}
-          </Text>
+          <Text style={[styles.heartIcon, { color: isInWishlist ? "red" : "gray" }]}>{isInWishlist ? "❤️" : "🤍"}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("PetDetails", { petId: image.id })}>
+        <TouchableOpacity onPress={() => navigation.navigate("PetDetailsPetOwner", { id: image.id })}>
           <Image source={{ uri: image.fotos[0] }} style={styles.petImage} />
         </TouchableOpacity>
         <View style={styles.cardBody}>

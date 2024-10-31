@@ -12,7 +12,7 @@ const CardPetShelter = ({ image, index = 0, goToEdit = () => {} }) => {
         <TouchableOpacity onPress={() => goToEdit(image.id, "m")} style={styles.editIcon}>
           <Text style={styles.pencilIcon}>✏️</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("PetDetailsShelter", { petId: image.id })}>
+        <TouchableOpacity onPress={() => navigation.navigate("PetDetailsShelter", { id: image.id })}>
           <Image source={{ uri: image.fotos[0] }} style={styles.petImage} />
         </TouchableOpacity>
         <View style={styles.cardBody}>
