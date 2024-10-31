@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CardPetShelter from "../components/cards/cardPetShelter";
 import { getDataHome } from "../features/home/homeData";
 import { Ionicons } from "@expo/vector-icons"; // Necesario para los iconos
+import Filters from "../components/filters/Filters";
 
 const HomeShelter = () => {
   const navigation = useNavigation();
@@ -41,17 +42,18 @@ const HomeShelter = () => {
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.main}>
-        {/* <Filters /> */}
+        <Filters />
         <View style={styles.section}>
-          {dataHome.pets.length === 0 ? (
-            <View style={styles.emptyMessageContainer}>
-              <Text>No hay animales registrados actualmente</Text>
-            </View>
-          ) : (
+          
             <View>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>Animales</Text>
               </View>
+                {dataHome.pets.length === 0 ? (
+                    <View style={styles.emptyMessageContainer}>
+                    <Text>No hay animales registrados actualmente</Text>
+                </View>
+                ) : (
               <View style={styles.cardContainer}>
                 {dataHome.pets.map((image, index) => (
                   <CardPetShelter
@@ -62,8 +64,8 @@ const HomeShelter = () => {
                   />
                 ))}
               </View>
+               )}
             </View>
-          )}
         </View>
       </ScrollView>
 
@@ -77,9 +79,9 @@ const HomeShelter = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    justifyContent: "center",
+    paddingTop: 60,
   },
   main: {
     width: "100%",
