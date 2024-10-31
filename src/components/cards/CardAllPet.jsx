@@ -2,14 +2,14 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWishlist, removeFromWishlist } from "../../features/wishlist/wishlistSlice";
-import iconSex from "../../assets/images/icons/sexo.png";
+import { addToWishlist, removeFromWishlist } from "../../features/wishlist/whishlistSlice";
+import iconSex from "../../../assets/images/icons/Sexo.png";
 
 const CardAllPet = ({ index, image }) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const wishList = useSelector((state) => state.wishlist);
-  const isInWishlist = wishList.includes(image.id);
+  const isInWishlist = wishList?.includes(image.id);
 
   const handleWishlistClick = () => {
     if (isInWishlist) {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   petImage: {
     width: "100%",
-    height: "60%",
+    height: 150,
     resizeMode: "cover",
   },
   cardBody: {

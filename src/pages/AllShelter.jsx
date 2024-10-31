@@ -3,9 +3,10 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "rea
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { getShelters } from "../api/setupAxios";
-import protectora from "../assets/images/protectors/Protectora-Animalistas.png";
+import protectora from "../../assets/images/protectors/Protectora-Animalistas.png";
 import Header from "../components/header/Header"; 
 import Filters from "../components/filters/Filters"; 
+import CardProtective from "../components/cards/CardProtective";
 
 const AllShelter = () => {
   const navigation = useNavigation();
@@ -18,7 +19,6 @@ const AllShelter = () => {
       try {
         if (token) {
           const shelterData = await getShelters(token);
-          console.log("Shelters from API:", shelterData);
           setLogosImages(shelterData);
         }
       } catch (error) {
@@ -44,13 +44,7 @@ const AllShelter = () => {
             <Text>No hay protectoras registradas actualmente</Text>
           ) : (
             logosImages.map((image, index) => (
-              <View key={index} style={styles.card}>
-                <Image source={protectora} style={styles.protectorImage} />
-                <View style={styles.cardBody}>
-                  <Text style={styles.cardTitle}>{image.nombreProtectora}</Text>
-                  <Text style={styles.cardText}>{image.descripcion}</Text>
-                </View>
-              </View>
+              <CardProtective image={image} key={index} index={index}/>
             ))
           )}
         </ScrollView>
@@ -63,7 +57,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#fff",
+    paddingTop: 60,
+
   },
   section: {
     flex: 1,
@@ -71,14 +66,15 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   title: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   cardsContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
+    gap: 30, 
   },
   card: {
     width: 100,

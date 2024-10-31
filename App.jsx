@@ -14,6 +14,8 @@ import ForgetPassword from "./src/pages/ForgetPassword.jsx";
 import CustomDrawerContent from "./src/components/header/CustomDrawerContent.jsx";
 import { PetDetailForPetOwner } from "./src/pages/PetDetailForPetOwner.jsx";
 import { PetDetailForShelter } from "./src/pages/PetDetailForShelter.jsx";
+import  AllPets  from "./src/pages/AllPets.jsx";
+import  AllShelter  from "./src/pages/AllShelter.jsx";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -31,6 +33,8 @@ function MainStack() {
       <Stack.Screen name="HomeShelter" component={HomeShelter} options={{ headerShown: false }} />
       <Stack.Screen name="PetDetailsShelter" component={PetDetailForShelter} options={{ headerShown: false }} />
       <Stack.Screen name="PetDetailsPetOwner" component={PetDetailForPetOwner} options={{ headerShown: false }} />
+      <Stack.Screen name="AllPets" component={AllPets} options={{ headerShown: false }} />
+      <Stack.Screen name="AllShelter" component={AllShelter} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -38,9 +42,7 @@ function MainStack() {
 // Configuración del Drawer que solo muestra Logout
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />} // Usa el contenido personalizado
-    >
+    <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}> 
       <Drawer.Screen name="Main" component={MainStack} options={{ headerShown: false }} />
     </Drawer.Navigator>
   );
@@ -55,84 +57,3 @@ export default function App() {
     </Provider>
   );
 }
-/* const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
-
-function HomePetOwnerStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="home_pet_owner"
-        component={HomeMascotero}
-        options={{ headerShown: false }}
-      />
-     
-    </Stack.Navigator>
-  );
-}
-
-function HomeShelterStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="home_Shelter"
-        component={HomeShelter}
-        options={{ headerShown: false }}
-      />
-     
-    </Stack.Navigator>
-  );
-}
-
-function DrawerNavigator() {
-  return (
-    <Drawer.Navigator initialRouteName="Login">
-      <Drawer.Screen
-        name="/"
-        component={Login}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="user_select"
-        component={UserSelect}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="register_petOwner"
-        component={PetRegistration}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="register_shelter"
-        component={RegisterShelter}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="forget_password"
-        component={ForgetPassword}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="HomePetOwner"
-        component={HomePetOwnerStack}
-        options={{ headerShown: false }}
-      />
-      <Drawer.Screen
-        name="HomeShelter"
-        component={HomeShelterStack}
-        options={{ headerShown: false }}
-      />
-    </Drawer.Navigator>
-  );
-}
-
-export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer style={styles.container}>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </Provider>
-  );
-}
- */

@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-nati
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { getDataHome } from "../features/home/homeData";
-import CardPet from "../components/cards/CardPet"; 
 import CardProtective from "../components/cards/CardProtective"; 
 import Header from "../components/header/Header";
 import Filters from "../components/filters/Filters";
@@ -32,7 +31,7 @@ const Home = () => {
     if (value === "pets") {
       navigation.navigate("AllPets"); 
     } else if (value === "shelters") {
-      navigation.navigate("AllShelters"); 
+      navigation.navigate("AllShelter"); 
     }
   };
 
@@ -102,11 +101,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 30,
   },
   sectionTitle: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 24,
   },
   linkText: {
     color: "#017179",
