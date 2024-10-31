@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import iconSex from "../../assets/images/icons/sexo.png";
+import iconSex from "../../../assets/images/icons/Sexo.png";
 
 const CardPetShelter = ({ image, index = 0, goToEdit = () => {} }) => {
   const navigation = useNavigation();
