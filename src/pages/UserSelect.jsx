@@ -7,9 +7,9 @@ import { View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
 function UserSelect({ navigation }) {
   const handleClick = (props) => {
     if (props === "pet") {
-      navigation.navigate("register_pet_owner");
+      navigation.navigate("RegisterPetOwner");
     } else if (props === "protector") {
-      navigation.navigate("register_shelter");
+      navigation.navigate("RegisterShelter");
     }
   };
 
