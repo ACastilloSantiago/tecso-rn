@@ -4,11 +4,7 @@ import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { store } from "./src/app/store.js";
-
 import CustomDrawerContent from "./src/components/header/CustomDrawerContent.jsx";
-
-import { PetDetailForPetOwner } from "./src/pages/PetDetailForPetOwner.jsx";
-import { PetDetailForShelter } from "./src/pages/PetDetailForShelter.jsx";
 import  AllPets  from "./src/pages/AllPets.jsx";
 import  AllShelter  from "./src/pages/AllShelter.jsx";
 
