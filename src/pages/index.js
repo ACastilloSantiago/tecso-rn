@@ -1,3 +1,4 @@
+export { StartedScreen } from "./StartedScreen";
 export { default as Login } from "./Login";
 export { PetDetailForPetOwner } from "./PetDetailForPetOwner";
 export { default as PetRegistration } from "./RegisterPetOwner";
