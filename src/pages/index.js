@@ -1,3 +1,8 @@
+export { PetDetailForShelter } from "./PetDetailForShelter";
+export { default as ForgetPassword } from "./ForgetPassword";
+export { default as EmailRegistered } from "./EmailRegistered";
+export { default as SuccesScreen } from "./SuccesScreen";
+export { default as ValidationAccount } from "./ValidationAccount";
 export { StartedScreen } from "./StartedScreen";
 export { default as Login } from "./Login";
 export { PetDetailForPetOwner } from "./PetDetailForPetOwner";
