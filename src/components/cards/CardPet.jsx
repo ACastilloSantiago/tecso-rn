@@ -9,7 +9,7 @@ const CardPet = ({ image }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const wishList = useSelector((state) => state.wishlist);
-  const isInWishlist = wishList.includes(image.id);
+  const isInWishlist = wishList?.includes(image.id);
 
   const handleWishlistClick = () => {
     if (isInWishlist) {
@@ -50,15 +50,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   card: {
-    width: 150,
+    width: 170,
     height: 250,
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOffset: { width: -4, height: 14 },
-    shadowOpacity: 0.25,
-    shadowRadius: 17,
     elevation: 5,
     marginLeft: 10,
   },

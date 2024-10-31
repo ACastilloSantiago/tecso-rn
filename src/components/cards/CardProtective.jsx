@@ -18,9 +18,8 @@ const CardProtective = ({ image }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginBottom: 10,
-    width:190,
-    height:290,
+    width:160,
+    height:240,
     backgroundColor: '#fff',
     borderRadius: 5,
     elevation: 3, 
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
   },
   protectorImage: {
     width: '100%',
-    height: 200,
+    height: 140,
     resizeMode: 'cover',
   },
   cardBody: {
