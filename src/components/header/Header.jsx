@@ -40,9 +40,6 @@ function Header() {
         <Icon name="menu" type="material" size={35} />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={logOut}>
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
 
       <TouchableOpacity onPress={goHome}>
         <Avatar source={avatar} size="medium" />
@@ -61,7 +58,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    backgroundColor: "#fff",
   },
   logoutText: {
     fontSize: 16,

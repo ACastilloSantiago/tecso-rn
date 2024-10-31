@@ -19,17 +19,15 @@ const CardProtective = ({ image }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     marginBottom: 10,
-  },
-  card: {
+    width:190,
+    height:290,
     backgroundColor: '#fff',
     borderRadius: 5,
-    overflow: 'hidden',
-    elevation: 3, // Sombra en Android
-    shadowColor: '#000', // Sombra en iOS
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 3, 
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    marginHorizontal: 10,
+  },
+  card: {
   },
   protectorImage: {
     width: '100%',

@@ -6,6 +6,8 @@ import { getDataHome } from "../features/home/homeData";
 import CardPet from "../components/cards/CardPet"; 
 import CardProtective from "../components/cards/CardProtective"; 
 import Header from "../components/header/Header";
+import Filters from "../components/filters/Filters";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,14 +39,9 @@ const Home = () => {
     <View style={styles.container}>
       <Header navigation={navigation} />
       <ScrollView style={styles.main}>
-        {/* <Filters /> */}
+        <Filters />
         {/* Sección de Animales */}
         <View style={styles.section}>
-          {dataHome.pets.length === 0 ? (
-            <View style={styles.emptyMessageContainer}>
-              <Text>No hay animales registrados actualmente</Text>
-            </View>
-          ) : (
             <View>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>Animales</Text>
@@ -53,12 +50,17 @@ const Home = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                {dataHome.pets.map((image, index) => (
+                  {dataHome.pets.length === 0 ? (
+                  <View style={styles.emptyMessageContainer}>
+                    <Text>No hay animales registrados actualmente</Text>
+                  </View>
+                ) : (
+                dataHome.pets.map((image, index) => (
                   <CardPet image={image} key={index} />
-                ))}
+                ))
+              )}
               </View>
             </View>
-          )}
         </View>
         {/* Sección de Protectoras */}
         <View style={styles.section}>
