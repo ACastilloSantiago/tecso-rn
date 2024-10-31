@@ -7,6 +7,7 @@ import CardPet from "../components/cards/CardPet";
 import CardProtective from "../components/cards/CardProtective"; 
 import Header from "../components/header/Header";
 import Filters from "../components/filters/Filters";
+import SliderCardPet from "../components/cards/SliderCardPet";
 
 
 const Home = () => {
@@ -49,15 +50,13 @@ const Home = () => {
                   <Text style={styles.linkText}>Ver todos</Text>
                 </TouchableOpacity>
               </View>
-              <View>
+              <View style={styles.petsContainer}>
                   {dataHome.pets.length === 0 ? (
                   <View style={styles.emptyMessageContainer}>
                     <Text>No hay animales registrados actualmente</Text>
                   </View>
                 ) : (
-                dataHome.pets.map((image, index) => (
-                  <CardPet image={image} key={index} />
-                ))
+                <SliderCardPet />
               )}
               </View>
             </View>
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   sectionTitle: {
     fontWeight: "bold",
@@ -119,11 +118,17 @@ const styles = StyleSheet.create({
     height: 150,
   },
   cardContainer: {
+    flex:1,
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 30,
+  },
+  petsContainer:{
+    flex:1,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
     gap: 10,
-  },
+  }
 });
 
 export default Home;
