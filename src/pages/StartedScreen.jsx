@@ -43,8 +43,8 @@ export const StartedScreen = () => {
         <TouchableOpacity onPress={() => goToPage(1)} style={[styles.dot, currentPage === 1 ? styles.activeDot : null]}></TouchableOpacity>
       </View>
       <View style={styles.buttons}>
-        <Button onPress={() => navigate.navigate("login")}>Comenzar</Button>
-        <TouchableOpacity onPress={() => navigate.navigate("login")} style={{ padding: 8 }}>
+        <Button onPress={() => navigate.navigate("Login")}>Comenzar</Button>
+        <TouchableOpacity onPress={() => navigate.navigate("Login")} style={{ padding: 8 }}>
           <Text style={{ color: colors.brandSecondary01 }}>Omitir</Text>
         </TouchableOpacity>
       </View>
