@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
-        onSubmit=/* {home} */{(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting }) => {
           try{
             dispatch(login(values));
             if (rememberMe) {
@@ -94,7 +94,7 @@ const Login = ({ navigation }) => {
                 {" "}
                 {loading ? "Cargando..." : "Ingresar"}{" "}
               </CustomButton>
-              <CustomButton size="large" onPress={() => navigation.navigate("UserSelect", { name: "User select" })}>
+              <CustomButton size="large" onPress={() => navigation.navigate("UserSelect", { name: "user_select" })}>
                 Crear cuenta
               </CustomButton>
             </View>
