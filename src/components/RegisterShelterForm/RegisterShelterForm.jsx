@@ -30,9 +30,9 @@ export const RegisterShelterForm = ({ navigation }) => {
         try {
           await registerNewShelter(values);
           resetForm();
-          navigation.navigate("/");//TODO: navigation.navigate("/validation_email");
+          navigation.navigate("ValidationAccount");
         } catch (error) {
-            navigation.navigate("/register_shelter");
+          navigation.navigate("EmailRegistered");
           console.log(error);
         }
       }}

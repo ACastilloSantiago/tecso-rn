@@ -58,12 +58,12 @@ const FormPetOwner = ({ navigation }) => {
       await SendEmail(refForm.current);
       console.log("PASE1");
 
-      navigation.navigate("validation_email");
+      navigation.navigate("ValidationAccount");
       setSubmitting(false);
     } catch (error) {
       console.log("ERROR", error);
       if (error?.includes("Ya existe un usuario registrado con esa dirección de email")) {
-        navigation.navigate("email_registered");
+        navigation.navigate("EmailRegistered");
       }
       setSubmitting(false);
       throw new Error(error);
