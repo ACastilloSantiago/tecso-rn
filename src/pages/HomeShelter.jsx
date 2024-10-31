@@ -44,8 +44,6 @@ const HomeShelter = () => {
       <ScrollView style={styles.main}>
         <Filters />
         <View style={styles.section}>
-          
-            <View>
               <View style={styles.sectionHeader}>
                 <Text style={styles.sectionTitle}>Animales</Text>
               </View>
@@ -65,7 +63,6 @@ const HomeShelter = () => {
                 ))}
               </View>
                )}
-            </View>
         </View>
       </ScrollView>
 
@@ -87,7 +84,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   section: {
-    padding: 16,
+    flex:1,
+    flexDirection:"column",
+    gap: 20,
   },
   sectionHeader: {
     flexDirection: "row",
@@ -100,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "#5F5B5B",
     fontFamily: "Poppins-Regular",
+    paddingLeft:12,
   },
   emptyMessageContainer: {
     alignItems: "center",
