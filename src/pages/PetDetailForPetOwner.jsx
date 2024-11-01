@@ -4,7 +4,7 @@ import { useFetchPetById } from "../hooks/useFetchPetById";
 import { DetailMain, DetailSlider, HeaderButton } from "../components/";
 
 import arrow from "../../assets/images/arrow-left.jpg";
-import edit from "../../assets/images/edit.jpg";
+import heart from "../../assets/images/heart.jpg";
 
 export const PetDetailForPetOwner = ({ route }) => {
   // * Uso de paramas
@@ -21,8 +21,8 @@ export const PetDetailForPetOwner = ({ route }) => {
         <HeaderButton>
           <Image source={arrow} width={24} height={24} />
         </HeaderButton>
-        <HeaderButton /*  to='form_pet' */>
-          <Image source={edit} width={24} height={24} />
+        <HeaderButton  to='heart'>
+          <Image source={heart} width={24} height={24} />
         </HeaderButton>
       </View>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -50,5 +50,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 24,
   },
-  scrollContainer: {},
+  scrollContainer: { flexGrow: 1 },
 });
