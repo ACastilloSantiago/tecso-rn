@@ -71,3 +71,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brandPrimary02,
   },
 });
+
+export default DetailSlider;

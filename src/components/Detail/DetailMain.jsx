@@ -1,5 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Tag, MapPin, Pill, ShelterDetail, Button } from "..";
+import Tag from "../elements/Tag";
+import Pill from "../elements/Pill";
+import MapPin from "../elements/MapPin";
+import ShelterDetail from "./ShelterDetail";
+import Button from "../Button";
 import { colors } from "../../../assets/styles/styles";
 
 export const DetailMain = ({ nombre, estado, descripcion, ciudad, contacto, edad, raza, sexo, tamano }) => {
@@ -118,3 +122,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+export default DetailMain;

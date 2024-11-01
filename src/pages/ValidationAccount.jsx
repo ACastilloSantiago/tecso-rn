@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import validation_email from "../../assets/images/process_email/image_validation_email.jpg";
 import ScreenPostCreate from "../components/ScreenPostCreate/ScreenPostCreate";
-import { Button } from "../components";
+import { Button } from "../components/Button";
 import { colors } from "../../assets/styles/styles";
 
 const ValidationAccount = () => {

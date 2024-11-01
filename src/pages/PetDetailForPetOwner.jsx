@@ -1,7 +1,8 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFetchPetById } from "../hooks/useFetchPetById";
-
-import { DetailMain, DetailSlider, HeaderButton } from "../components/";
+import DetailMain  from "../components/Detail/DetailMain";
+import { DetailSlider } from "../components/Detail/DetailSlider";
+import { HeaderButton } from "../components/elements/HeaderButton";
 
 import arrow from "../../assets/images/arrow-left.jpg";
 import edit from "../../assets/images/edit.jpg";

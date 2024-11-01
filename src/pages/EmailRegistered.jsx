@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import ScreenPostCreate from "../components/ScreenPostCreate/ScreenPostCreate";
 import email_registrado from "../../assets/images/process_email/image_email_registrado.jpg";
 
-import { Button } from "../components";
+import Button from "../components/Button";
 import { colors } from "../../assets/styles/styles";
 
 const EmailRegistered = () => {
