@@ -5,7 +5,7 @@ import ScreenPostCreate from "../components/ScreenPostCreate/ScreenPostCreate";
 import success_register from "../../assets/images/process_email/image_succes_register.jpg";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../../assets/styles/styles";
-import { Button } from "../components";
+import { Button } from "../components/Button";
 
 const SuccesScreen = () => {
   const navigation = useNavigation();

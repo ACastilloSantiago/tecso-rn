@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   categoryButton: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#FFFFFF",
     padding: 10,
     borderRadius: 20,
     margin: 5,

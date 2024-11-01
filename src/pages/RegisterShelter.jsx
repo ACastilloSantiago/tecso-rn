@@ -1,5 +1,5 @@
 import { Image, View } from "react-native";
-import { RegisterShelterForm } from "../components/";
+import  {RegisterShelterForm } from "../components/RegisterShelterForm/RegisterShelterForm";
 import { colors } from "../../assets/styles/styles";
 
 export const RegisterShelter = ({ navigation }) => {
@@ -9,6 +9,7 @@ export const RegisterShelter = ({ navigation }) => {
         flex: 1,
         backgroundColor: colors.backgroundLightmodePrimary,
         padding: 16,
+        paddingTop: 140,
       }}
     >
       <View style={{ alignItems: "center", paddingTop: 20, paddingBottom: 69 }}>

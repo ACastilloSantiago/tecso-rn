@@ -6,7 +6,7 @@ import { colors } from "../../assets/styles/styles";
 
 import first from "../../assets/images/forget.png";
 import second from "../../assets/images/forget2.png";
-import { Button } from "../components";
+import { Button } from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 
 export const StartedScreen = () => {
