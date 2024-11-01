@@ -78,7 +78,7 @@ export const RegisterShelterForm = ({ navigation }) => {
               <Input name="calle" placeholder="Calle*" />
               <View style={styles.row}>
                 <View style={{ flex: 1 }}>
-                  <Input name="numero" placeholder="Número*" />
+                  <Input name="numero" placeholder="Número*" type="number" />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Input name="piso" placeholder="Piso" />

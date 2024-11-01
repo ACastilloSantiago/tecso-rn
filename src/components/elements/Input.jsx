@@ -24,6 +24,28 @@ export const Input = (props) => {
           <ErrorMessage name={props.name} component={Text} style={styles.errorMessage} />
         </View>
       );
+    } else if (props.type === "number") {
+      return (
+        <View style={{ position: "relative", marginBottom: 12 }}>
+          <View style={[{ position: "relative" }, errorStyle]}>
+            <TextInput
+              placeholderTextColor={meta.touched && !!meta.error ? colors.systemError : colors.brandNeutro01}
+              style={[styles.input, errorStyle]}
+              value={field.value || ""}
+              {...props}
+              keyboardType="numeric"
+              onChangeText={(e) => {
+                console.log(e);
+
+                   const numericValue = e.replace(/[^0-9]/g, "");
+                   helpers.setValue(numericValue);
+              }}
+              onBlur={() => helpers.setTouched(true)}
+            />
+          </View>
+          <ErrorMessage name={props.name} component={Text} style={styles.errorMessage} />
+        </View>
+      );
     } else {
       return (
         <View style={[styles.inputContainer, errorStyle]}>
