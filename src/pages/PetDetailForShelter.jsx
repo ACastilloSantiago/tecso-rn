@@ -51,5 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 24,
   },
-  scrollContainer: {},
+  scrollContainer: { flexGrow: 1 },
 });
