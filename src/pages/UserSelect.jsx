@@ -48,8 +48,8 @@ function UserSelect({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    paddingVertical: 20,
+    justifyContent: "space-around",
+    gap:100,
   },
   row: {
     flexDirection: "row",
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     alignSelf: "flex-end",
     position: "relative",
-    right: 50,
+    right: 70,
     bottom: 120,
   },
   alignCenter: {
@@ -125,14 +125,14 @@ const styles = StyleSheet.create({
     width: 280,
     height: 280,
     position: "absolute",
-    left: 30,
-    top: -120,
+    left: 10,
+    top: -100,
   },
   circlesDown: {
-    width: 230,
+    width: 280,
     height: 230,
     position: "absolute",
-    right: -30,
+    right: -60,
     bottom: -120,
   },
 });

@@ -1,6 +1,8 @@
 import { View, StyleSheet, FlatList } from "react-native";
 import { Formik } from "formik";
-import { Input, Select, Button } from "../";
+import {Input} from "../elements/Input";
+import {Select} from "../elements/Select";
+import {Button} from "../Button";
 import { initialValues, validationSchema, inputs1, inputs2 } from "../../data/RegisterShelter";
 import { useFetchAddress } from "../../hooks/useFetchAddress";
 import { registerNewShelter } from "../../api/setupAxios";

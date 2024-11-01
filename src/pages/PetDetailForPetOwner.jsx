@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFetchPetById } from "../hooks/useFetchPetById";
-import DetailMain  from "../components/Detail/DetailMain";
+import { DetailMain }  from "../components/Detail/DetailMain";
 import { DetailSlider } from "../components/Detail/DetailSlider";
 import { HeaderButton } from "../components/elements/HeaderButton";
 
