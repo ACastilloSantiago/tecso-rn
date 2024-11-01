@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import {Tag} from "../elements/Tag";
 import {Pill} from "../elements/Pill";
 import {MapPin} from "../elements/MapPin";
-import {ShelterDetail} from "./ShelterDetail";
+import ShelterDetail from "./ShelterDetail";
 import {Button} from "../Button";
 import { colors } from "../../../assets/styles/styles";
 

@@ -1,6 +1,8 @@
 import { View, Text, Modal, TouchableOpacity, Image, StyleSheet } from "react-native";
-
-import { Instagram, Mail, Phone, XCircle } from "../elements/";
+import { Instagram } from "../elements/Instagram";
+import { Mail } from "../elements/Mail";
+import { Phone } from "../elements/Phone";
+import { XCircle } from "../elements/XCircle";
 
 import { colors } from "../../../assets/styles/styles";
 import shelter from "../../../assets/images/protectors/Protectora-Animalistas.png";

@@ -18,10 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.juandev864.rnpractica"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09077825-837d-4d67-8349-ab12da3542a9"
+      }
     }
   }
 }
