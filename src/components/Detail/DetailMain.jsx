@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     width: "100%",
     marginTop: -20,
+    flex:1,
     // position: "absolute",
     // marginTop: 380,
     // top: 0,
