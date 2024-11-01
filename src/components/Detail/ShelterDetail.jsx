@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import ShelterModal from "./ShelterModal";
-import { Phone } from "../elements";
+import { Phone } from "../elements/Phone";
 import { colors } from "../../../assets/styles/styles";
 import ShelterImage from "../../../assets/images/protectors/Protectora-Animalistas.png";
 
